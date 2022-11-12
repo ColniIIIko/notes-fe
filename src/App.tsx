@@ -14,56 +14,59 @@ import NotFoundPage from '@/pages/NotFoundPage';
 import NoteAddPage from '@/pages/NoteAddPage';
 import NoteEditPage from '@/pages/NoteEditPage';
 
-const routes = createBrowserRouter([
-  {
-    path: '/',
+const routes = createBrowserRouter(
+  [
+    {
+      path: '/',
 
-    element: (
-      <ProtectedRoutes>
-        <Layout />
-      </ProtectedRoutes>
-    ),
-    children: [
-      {
-        path: '/user',
-        element: <UserPage />,
-      },
-      {
-        path: '/notes',
-        children: [
-          {
-            path: '',
-            element: <NotesPage />,
-          },
-          {
-            path: 'add',
-            element: <NoteAddPage />,
-          },
-          {
-            path: ':id',
-            element: <NotePage />,
-          },
-          {
-            path: ':id/edit',
-            element: <NoteEditPage />,
-          },
-        ],
-      },
-      {
-        path: '*',
-        element: <NotFoundPage />,
-      },
-    ],
-  },
-  {
-    path: '/register',
-    element: <RegisterPage />,
-  },
-  {
-    path: '/login',
-    element: <LoginPage />,
-  },
-]);
+      element: (
+        <ProtectedRoutes>
+          <Layout />
+        </ProtectedRoutes>
+      ),
+      children: [
+        {
+          path: '/user',
+          element: <UserPage />,
+        },
+        {
+          path: '/notes',
+          children: [
+            {
+              path: '',
+              element: <NotesPage />,
+            },
+            {
+              path: 'add',
+              element: <NoteAddPage />,
+            },
+            {
+              path: ':id',
+              element: <NotePage />,
+            },
+            {
+              path: ':id/edit',
+              element: <NoteEditPage />,
+            },
+          ],
+        },
+        {
+          path: '*',
+          element: <NotFoundPage />,
+        },
+      ],
+    },
+    {
+      path: '/register',
+      element: <RegisterPage />,
+    },
+    {
+      path: '/login',
+      element: <LoginPage />,
+    },
+  ],
+  { basename: process.env.PUBLIC_URL || '' }
+);
 
 function App() {
   return (
